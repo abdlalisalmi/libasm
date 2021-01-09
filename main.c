@@ -3,6 +3,7 @@
 size_t      ft_strlen(char *str);
 ssize_t     ft_write(int fd, char *buffer, size_t len);
 int         strcmp(const char *s1, const char *s2);
+char        *ft_strcpy(char *dst, const char *src);
 
 int main()
 {
