@@ -6,7 +6,7 @@
 #    By: aes-salm <aes-salm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 11:21:58 by aes-salm          #+#    #+#              #
-#    Updated: 2021/01/09 16:22:57 by aes-salm         ###   ########.fr        #
+#    Updated: 2021/01/11 10:06:20 by aes-salm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = 	ft_asm/ft_strlen.s \
 		ft_asm/ft_strcmp.s \
 		ft_asm/ft_strcpy.s \
 		ft_asm/ft_read.s\
-		ft_asm/ft_strdup.s
+		ft_asm/ft_strdup.s\
 
 OBJS = $(SRCS:.s=.o)
 CC = gcc

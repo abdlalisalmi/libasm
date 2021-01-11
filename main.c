@@ -9,7 +9,7 @@ ssize_t     ft_write(int fd, char *buffer, size_t len);
 int         ft_strcmp(const char *s1, const char *s2);
 char        *ft_strcpy(char *dst, const char *src);
 ssize_t     ft_read(int fildes, void *buf, size_t nbyte);
-char        *strdup(const char *s1);
+char        *ft_strdup(const char *s1);
 
 void check_strlen()
 {
@@ -173,9 +173,10 @@ void check_read()
 	printf("[return : %d]\n[%s]\n", ret, buff1);
 	printf("\n");
 	close(fd);
+
+
 	fd = open("file.txt", O_RDONLY);
 	clear_buffer(buff1, 891);
-	printf("%-20s: \n", "header file.txt | ft_read ");
 	printf("%-20s: \n", "header file.txt | ft_read ");
 	ret = ft_read(fd, buff1, 890);
 	buff1[ret] = 0;
@@ -184,110 +185,94 @@ void check_read()
 	clear_buffer(buff1, 891);
 	close(fd);
 
-	// fd = open("test", O_RDONLY);
-	// printf("%-20s: \n", "file test | libc ");
-	// ret = read(fd, buff1, 890);
-	// buff1[ret] = 0;
-	// printf("[return : %d]\n|%s|\n", ret, buff1);
-	// printf("\n");
-	// close(fd);
-	// fd = open("test", O_RDONLY);
-	// clear_buffer(buff1, 891);
-	// printf("%-20s: \n", "file test | libasm ");
-	// ret = ft_read(fd, buff1, 890);
-	// buff1[ret] = 0;
-	// printf("[return : %d]\n|%s|\n", ret, buff1);
-	// printf("\n");
-	// clear_buffer(buff1, 891);
-	// close(fd);
+	printf("\n------------------------------\n\n");
 
-	// fd = open("wrong", O_RDONLY);
-	// printf("%-20s: \n", "wrong | libc ");
-	// ret = read(fd, buff1, 890);
-	// buff1[ret] = 0;
-	// printf("[return : %d]\n|%s|\n", ret, buff1);
-	// printf("\n");
-	// close(fd);
-	// fd = open("wrong", O_RDONLY);
-	// clear_buffer(buff1, 891);
-	// printf("%-20s: \n", "wrong | libasm ");
-	// ret = ft_read(fd, buff1, 890);
-	// buff1[ret] = 0;
-	// printf("[return : %d]\n|%s|\n", ret, buff1);
-	// printf("\n");
-	// clear_buffer(buff1, 891);
-	// close(fd);
+	fd = open("wrong", O_RDONLY);
+	printf("%-20s: \n", "header no_file.txt | read ");
+	ret = read(fd, buff1, 890);
+	buff1[ret] = 0;
+	printf("[return : %d]\n[%s]\n", ret, buff1);
+	printf("\n");
+	close(fd);
+
+	fd = open("wrong", O_RDONLY);
+	clear_buffer(buff1, 891);
+	printf("%-20s: \n", "header no_file.txt | ft_read ");
+	ret = ft_read(fd, buff1, 890);
+	buff1[ret] = 0;
+	printf("[return : %d]\n[%s]\n", ret, buff1);
+	printf("\n");
+	clear_buffer(buff1, 891);
+	close(fd);
 }
 
-// void check_strdup()
-// {
-// 	char *hello_world = "Hello world !";
-// 	char *empty = "";
-// 	char *save;
-// 	char *save2;
+void check_strdup()
+{
+	char *hello_world = "Hello world !";
+	char *empty = "";
+	char *save;
+	char *save2;
 	
-// 	printf("\n================================\n");
-// 	printf("========== FT_STRDUP ===========\n");
-// 	printf("================================\n\n");
-// 	printf("%-20s: \"%s\"\n", "char *", hello_world);
-// 	save = strdup(hello_world);
-// 	printf("%-20s: \"%s\"\n", "libc", save);
-// 	free(save);
-// 	save = NULL;
-// 	save2 = ft_strdup(hello_world);
-// 	printf("%-20s: \"%s\"\n", "libasm", save2);
-// 	free(save2);
-// 	save2 = NULL;
-// 	printf("\n");
+	printf("\n================================\n");
+	printf("========== FT_STRDUP ===========\n");
+	printf("================================\n\n");
 
-// 	printf("%-20s: \"%s\"\n", "char *", empty);
-// 	save = strdup(empty);
-// 	printf("%-20s: \"%s\"\n", "libc", save);
-// 	free(save);
-// 	save = NULL;
-// 	save2 = ft_strdup(empty);
-// 	printf("%-20s: \"%s\"\n", "libasm", save2);
-// 	free(save2);
-// 	save2 = NULL;
-// 	printf("\n");
+	printf("%-20s: \"%s\"\n", "char *", hello_world);
+	save = strdup(hello_world);
+	printf("%-20s: \"%s\"\n", "strdup", save);
+	free(save);
+	save = NULL;
+	save2 = ft_strdup(hello_world);
+	printf("%-20s: \"%s\"\n", "ft_strdup", save2);
+	free(save2);
+	save2 = NULL;
+	
+	printf("\n------------------------------\n\n");
 
-// 	// ------- NULL = SEGFAULT
-// 	// printf("%-20s: NULL\n", "char *");
-// 	// save = strdup(NULL);
-// 	// printf("%-20s: \"%s\"\n", "libc", save);
-// 	// free(save);
-// 	// save = NULL;
-// 	// save2 = ft_strdup(NULL);
-// 	// printf("%-20s: \"%s\"\n", "libasm", save2);
-// 	// free(save2);
-// 	// save2 = NULL;
-// 	// printf("\n");
-// }
+	printf("%-20s: \"%s\"\n", "char *", empty);
+	save = strdup(empty);
+	printf("%-20s: \"%s\"\n", "strdup", save);
+	free(save);
+	save = NULL;
+	save2 = ft_strdup(empty);
+	printf("%-20s: \"%s\"\n", "ft_strdup", save2);
+	free(save2);
+	save2 = NULL;
+	printf("\n");
+
+}
 
 void stop()
 {
 	char skip[10];
 	printf("\nClick any button to contunue: ");
     scanf(" %s", skip);
+	printf("\e[1;1H\e[2J");
 }
 
 int main()
 {
     
+	printf("\e[1;1H\e[2J");
 
-	// check_strlen();
-    // stop();
+	check_strlen();
+    stop();
 
-	// check_write();
-    // stop();
+
+	check_write();
+    stop();
     
-	// check_strcpy();
-    // stop();
+	check_strcpy();
+    stop();
 
-	// check_strcmp();
-	// stop();
+	check_strcmp();
+	stop();
 
 	check_read();
-	// stop();
-	// check_strdup();
+	stop();
+
+	check_strdup();
+	stop();
+
+	return 0;
 }
